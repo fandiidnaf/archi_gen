@@ -1,0 +1,13 @@
+.dart_tool/
+.packages
+pubspec.lock
+build/
+doc/api/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+coverage/
+
+# FVM Version Cache
+.fvm/
