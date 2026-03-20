@@ -26,7 +26,7 @@ class ListCommand {
       _listCoreFiles(coreDir);
     } else {
       CliLogger.warn('Core structure: NOT initialized');
-      CliLogger.hint('Run: dart run clean_arch_gen init');
+      CliLogger.hint('Run: dart run archi_gen init');
     }
 
     print('');
@@ -34,7 +34,7 @@ class ListCommand {
     // ── Features ─────────────────────────────────────────────────────────────
     if (!featuresDir.existsSync()) {
       CliLogger.warn('No features found.');
-      CliLogger.hint('Run: dart run clean_arch_gen feature <n>');
+      CliLogger.hint('Run: dart run archi_gen feature <n>');
       return;
     }
 
@@ -47,7 +47,7 @@ class ListCommand {
 
     if (features.isEmpty) {
       CliLogger.warn('No features found.');
-      CliLogger.hint('Run: dart run clean_arch_gen feature <n>');
+      CliLogger.hint('Run: dart run archi_gen feature <n>');
       return;
     }
 
@@ -55,7 +55,8 @@ class ListCommand {
     print('');
 
     for (final featureName in features) {
-      final featureDir = Directory(FileHelper.libPath(['features', featureName]));
+      final featureDir =
+          Directory(FileHelper.libPath(['features', featureName]));
       final className = toPascalCase(featureName);
       final info = _analyzeFeature(featureDir, featureName);
 
@@ -71,8 +72,10 @@ class ListCommand {
     final result = <String>[];
 
     // Domain
-    final entityFile = File(p.join(dir.path, 'domain', 'entities', '${featureName}_entity.dart'));
-    final repoFile = File(p.join(dir.path, 'domain', 'repositories', '${featureName}_repository.dart'));
+    final entityFile = File(
+        p.join(dir.path, 'domain', 'entities', '${featureName}_entity.dart'));
+    final repoFile = File(p.join(
+        dir.path, 'domain', 'repositories', '${featureName}_repository.dart'));
     final usecaseDir = Directory(p.join(dir.path, 'domain', 'usecases'));
 
     final domainItems = [
@@ -84,12 +87,19 @@ class ListCommand {
     result.add('🏛  Domain  : ${domainItems.join(', ')}');
 
     // Data
-    final modelFile = File(p.join(dir.path, 'data', 'models', '${featureName}_model.dart'));
+    final modelFile =
+        File(p.join(dir.path, 'data', 'models', '${featureName}_model.dart'));
     final datasourceFile = File(p.join(
-      dir.path, 'data', 'datasources', '${featureName}_remote_datasource.dart',
+      dir.path,
+      'data',
+      'datasources',
+      '${featureName}_remote_datasource.dart',
     ));
     final repoImplFile = File(p.join(
-      dir.path, 'data', 'repositories', '${featureName}_repository_impl.dart',
+      dir.path,
+      'data',
+      'repositories',
+      '${featureName}_repository_impl.dart',
     ));
     final dataItems = [
       if (modelFile.existsSync()) 'model',
@@ -100,7 +110,10 @@ class ListCommand {
 
     // Presentation
     final blocFile = File(p.join(
-      dir.path, 'presentation', 'bloc', '${featureName}_bloc.dart',
+      dir.path,
+      'presentation',
+      'bloc',
+      '${featureName}_bloc.dart',
     ));
     final pagesDir = Directory(p.join(dir.path, 'presentation', 'pages'));
     final pageFiles = pagesDir.existsSync()

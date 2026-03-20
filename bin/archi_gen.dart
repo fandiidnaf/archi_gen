@@ -1,4 +1,4 @@
-import 'package:clean_arch_gen/clean_arch_gen.dart';
+import 'package:archi_gen/archi_gen.dart';
 
 void main(List<String> args) async {
   final CleanArchCli cli = CleanArchCli();

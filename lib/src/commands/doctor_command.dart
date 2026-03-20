@@ -117,7 +117,7 @@ class DoctorCommand {
     final featuresDir = Directory(FileHelper.libPath(['features']));
     if (!featuresDir.existsSync()) {
       CliLogger.section('Features');
-      _warn('No features yet — run: dart run clean_arch_gen feature <n>');
+      _warn('No features yet — run: dart run archi_gen feature <n>');
       return;
     }
 
@@ -163,7 +163,7 @@ class DoctorCommand {
     final routerFile =
         File(FileHelper.libPath(['core', 'router', 'app_router.dart']));
     if (!routerFile.existsSync()) {
-      _warn('app_router.dart not found — run: dart run clean_arch_gen init');
+      _warn('app_router.dart not found — run: dart run archi_gen init');
       return;
     }
 
@@ -223,7 +223,7 @@ class DoctorCommand {
     );
     if (_failCount > 0) {
       print('');
-      CliLogger.hint('Fix core:  dart run clean_arch_gen init');
+      CliLogger.hint('Fix core:  dart run archi_gen init');
       CliLogger.hint('Fix deps:  flutter pub add <package>');
     }
   }

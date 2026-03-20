@@ -1,6 +1,6 @@
-# clean_arch_gen
+# archi_gen
 
-[![pub.dev](https://img.shields.io/badge/pub.dev-v0.5.0-blue)](https://pub.dev/packages/clean_arch_gen)
+[![pub.dev](https://img.shields.io/badge/pub.dev-v0.5.0-blue)](https://pub.dev/packages/archi_gen)
 [![Dart SDK](https://img.shields.io/badge/Dart-≥3.0.0-blue)](https://dart.dev)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
@@ -13,17 +13,17 @@
 
 | Concern | Package |
 |---------|---------|
-| State | `flutter_bloc ^8.x` |
-| Navigation | `go_router ^14.x` — `StatefulShellRoute.indexedStack` |
-| DI | `get_it ^8.x` |
-| Functional | `fpdart ^1.x` — `Either<Failure, T>` |
-| HTTP | `dio ^5.x` |
-| Token refresh | `fresh_dio ^0.5.1` — auto Bearer + refresh on 401 |
-| Logging | `pretty_dio_logger ^3.x` — debug only |
-| Token storage | `shared_preferences ^2.x` |
-| Typography | `google_fonts ^6.x` — Outfit |
-| Equality | `equatable ^2.x` |
-| Formatting | `intl ^0.19.x` |
+| State | `flutter_bloc ^latest` |
+| Navigation | `go_router ^latest` — `StatefulShellRoute.indexedStack` |
+| DI | `get_it ^latest` |
+| Functional | `fpdart ^latest` — `Either<Failure, T>` |
+| HTTP | `dio ^latest` |
+| Token refresh | `fresh_dio ^latest` — auto Bearer + refresh on 401 |
+| Logging | `pretty_dio_logger ^latest` — debug only |
+| Token storage | `shared_preferences ^latest` |
+| Typography | `google_fonts ^latest` — Outfit |
+| Equality | `equatable ^latest` |
+| Formatting | `intl ^latest` |
 
 ---
 
@@ -31,7 +31,7 @@
 
 ```yaml
 dev_dependencies:
-  clean_arch_gen: ^0.5.0
+  archi_gen: any
 ```
 
 ```bash
@@ -58,11 +58,11 @@ flutter pub get
 ## Quick start
 
 ```bash
-dart run clean_arch_gen init
-dart run clean_arch_gen feature product
-dart run clean_arch_gen feature invoice --with-form
-dart run clean_arch_gen preset auth
-dart run clean_arch_gen doctor
+dart run archi_gen init
+dart run archi_gen feature product
+dart run archi_gen feature invoice --with-form
+dart run archi_gen preset auth
+dart run archi_gen doctor
 ```
 
 ---
@@ -222,7 +222,7 @@ AppTypography.m.semiBold.withFont(GoogleFonts.poppins)
 ## `doctor`
 
 ```
-dart run clean_arch_gen doctor
+dart run archi_gen doctor
 ```
 
 Checks 30+ core files, all required deps, feature integrity, and route registration. Prints ✓/⚠/✗ per item with a summary.
@@ -238,7 +238,7 @@ cd your_package_folder
 git init
 git add .
 git commit -m "feat: initial release v0.5.0"
-git remote add origin https://github.com/YOUR_USERNAME/clean_arch_gen.git
+git remote add origin https://github.com/YOUR_USERNAME/archi_gen.git
 git branch -M main
 git push -u origin main
 git tag v0.5.0 && git push origin v0.5.0
@@ -246,8 +246,8 @@ git tag v0.5.0 && git push origin v0.5.0
 
 Update `pubspec.yaml`:
 ```yaml
-homepage: https://github.com/YOUR_USERNAME/clean_arch_gen
-repository: https://github.com/YOUR_USERNAME/clean_arch_gen
+homepage: https://github.com/YOUR_USERNAME/archi_gen
+repository: https://github.com/YOUR_USERNAME/archi_gen
 ```
 
 ### pub.dev

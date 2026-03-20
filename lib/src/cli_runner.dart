@@ -84,7 +84,7 @@ class CleanArchCli {
     }
 
     if (results['version'] as bool) {
-      CliLogger.info('clean_arch_gen v0.4.0');
+      CliLogger.info('archi_gen v0.5.0');
       return;
     }
 
@@ -112,7 +112,7 @@ class CleanArchCli {
         final rest = results.command!.rest;
         if (rest.isEmpty) {
           CliLogger.error('Feature name is required.');
-          CliLogger.hint('Usage: dart run clean_arch_gen feature <name>');
+          CliLogger.hint('Usage: dart run archi_gen feature <name>');
           return;
         }
         await FeatureCommand().run(
@@ -149,7 +149,7 @@ class CleanArchCli {
         final rest = results.command!.rest;
         if (rest.isEmpty) {
           CliLogger.error('Feature name is required.');
-          CliLogger.hint('Usage: dart run clean_arch_gen remove <name>');
+          CliLogger.hint('Usage: dart run archi_gen remove <name>');
           return;
         }
         await RemoveCommand().run(
@@ -171,7 +171,7 @@ class CleanArchCli {
   void _printUsage(ArgParser parser) {
     CliLogger.printBanner();
     print('');
-    print('Usage: dart run clean_arch_gen <command> [options]');
+    print('Usage: dart run archi_gen <command> [options]');
     print('');
     print('Commands:');
     print(
@@ -199,16 +199,16 @@ class CleanArchCli {
     print(parser.usage);
     print('');
     print('Examples:');
-    print('  dart run clean_arch_gen init');
-    print('  dart run clean_arch_gen feature product --with-form');
-    print('  dart run clean_arch_gen feature analytics --no-datasource');
-    print('  dart run clean_arch_gen preset auth');
-    print('  dart run clean_arch_gen doctor');
-    print('  dart run clean_arch_gen remove old_feature -y');
+    print('  dart run archi_gen init');
+    print('  dart run archi_gen feature product --with-form');
+    print('  dart run archi_gen feature analytics --no-datasource');
+    print('  dart run archi_gen preset auth');
+    print('  dart run archi_gen doctor');
+    print('  dart run archi_gen remove old_feature -y');
   }
 
   void _printInitUsage() {
-    print('Usage: dart run clean_arch_gen init [options]');
+    print('Usage: dart run archi_gen init [options]');
     print('');
     print('Generates lib/core/ + lib/main.dart.');
     print('Runs `flutter pub add <deps>` automatically.');
@@ -220,7 +220,7 @@ class CleanArchCli {
   }
 
   void _printFeatureUsage() {
-    print('Usage: dart run clean_arch_gen feature <name> [options]');
+    print('Usage: dart run archi_gen feature <name> [options]');
     print('');
     print(
       'Generates lib/features/<name>/ with domain / data / presentation layers.',
@@ -235,14 +235,14 @@ class CleanArchCli {
     print('  -h, --help        Show this help');
     print('');
     print('Examples:');
-    print('  dart run clean_arch_gen feature invoice --with-form');
+    print('  dart run archi_gen feature invoice --with-form');
     print(
-      '  dart run clean_arch_gen feature config --no-datasource --no-usecase',
+      '  dart run archi_gen feature config --no-datasource --no-usecase',
     );
   }
 
   void _printPresetUsage() {
-    print('Usage: dart run clean_arch_gen preset <name> [options]');
+    print('Usage: dart run archi_gen preset <name> [options]');
     print('');
     print('Available presets:');
     print('  auth        Login page, Profile page, AuthBloc,');
@@ -259,7 +259,7 @@ class CleanArchCli {
   }
 
   void _printRemoveUsage() {
-    print('Usage: dart run clean_arch_gen remove <name> [options]');
+    print('Usage: dart run archi_gen remove <name> [options]');
     print('');
     print(
       'Deletes lib/features/<name>/ after typing the feature name to confirm.',

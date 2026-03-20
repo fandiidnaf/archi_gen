@@ -1,7 +1,7 @@
 import 'dart:io';
+import 'package:archi_gen/archi_gen.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
-import 'package:clean_arch_gen/clean_arch_gen.dart';
 
 void main() {
   late Directory tempDir;
@@ -70,22 +70,27 @@ void main() {
       for (final path in expected) {
         final file = File(p.join(tempDir.path, path));
         expect(file.existsSync(), isTrue, reason: 'Missing: $path');
-        expect(file.readAsStringSync().isNotEmpty, isTrue, reason: '$path empty');
+        expect(file.readAsStringSync().isNotEmpty, isTrue,
+            reason: '$path empty');
       }
     });
 
     test('service_locator uses GetIt.instance (not broken)', () async {
       await CoreGenerator(projectName: 'test_app').generate();
-      final content = File(p.join(tempDir.path, 'lib/core/di/service_locator.dart'))
-          .readAsStringSync();
+      final content =
+          File(p.join(tempDir.path, 'lib/core/di/service_locator.dart'))
+              .readAsStringSync();
       expect(content, contains('GetIt.instance'));
       expect(content, isNot(contains('= .instance')));
     });
 
-    test('service_locator registers DioClient, AuthInterceptor, SharedPreferences', () async {
+    test(
+        'service_locator registers DioClient, AuthInterceptor, SharedPreferences',
+        () async {
       await CoreGenerator(projectName: 'test_app').generate();
-      final content = File(p.join(tempDir.path, 'lib/core/di/service_locator.dart'))
-          .readAsStringSync();
+      final content =
+          File(p.join(tempDir.path, 'lib/core/di/service_locator.dart'))
+              .readAsStringSync();
       expect(content, contains('DioClient.create'));
       expect(content, contains('AuthInterceptor'));
       expect(content, contains('SharedPreferences'));
@@ -94,12 +99,14 @@ void main() {
 
     test('main() is async and awaits configureDependencies', () async {
       await CoreGenerator(projectName: 'test_app').generate();
-      final content = File(p.join(tempDir.path, 'lib/main.dart')).readAsStringSync();
+      final content =
+          File(p.join(tempDir.path, 'lib/main.dart')).readAsStringSync();
       expect(content, contains('void main() async'));
       expect(content, contains('await configureDependencies()'));
     });
 
-    test('auth_interceptor uses Fresh.oAuth2 and RevokeTokenException', () async {
+    test('auth_interceptor uses Fresh.oAuth2 and RevokeTokenException',
+        () async {
       await CoreGenerator(projectName: 'test_app').generate();
       final content = File(p.join(
         tempDir.path,
@@ -147,16 +154,18 @@ void main() {
 
     test('app_router uses StatefulShellRoute.indexedStack', () async {
       await CoreGenerator(projectName: 'test_app').generate();
-      final content = File(p.join(tempDir.path, 'lib/core/router/app_router.dart'))
-          .readAsStringSync();
+      final content =
+          File(p.join(tempDir.path, 'lib/core/router/app_router.dart'))
+              .readAsStringSync();
       expect(content, contains('StatefulShellRoute.indexedStack'));
       expect(content, contains('StatefulShellBranch'));
     });
 
     test('route_structure.dart defines RouteStructure', () async {
       await CoreGenerator(projectName: 'test_app').generate();
-      final content = File(p.join(tempDir.path, 'lib/core/router/route_structure.dart'))
-          .readAsStringSync();
+      final content =
+          File(p.join(tempDir.path, 'lib/core/router/route_structure.dart'))
+              .readAsStringSync();
       expect(content, contains('class RouteStructure'));
       expect(content, contains('final String path'));
       expect(content, contains('final String name'));
@@ -164,16 +173,18 @@ void main() {
 
     test('app_theme imports app_typography and uses AppTypography', () async {
       await CoreGenerator(projectName: 'test_app').generate();
-      final content = File(p.join(tempDir.path, 'lib/core/theme/app_theme.dart'))
-          .readAsStringSync();
+      final content =
+          File(p.join(tempDir.path, 'lib/core/theme/app_theme.dart'))
+              .readAsStringSync();
       expect(content, contains("import 'app_typography.dart'"));
       expect(content, contains('AppTypography'));
     });
 
     test('num_ext defines .h and .w', () async {
       await CoreGenerator(projectName: 'test_app').generate();
-      final content = File(p.join(tempDir.path, 'lib/core/extensions/num_ext.dart'))
-          .readAsStringSync();
+      final content =
+          File(p.join(tempDir.path, 'lib/core/extensions/num_ext.dart'))
+              .readAsStringSync();
       expect(content, contains('get h'));
       expect(content, contains('get w'));
     });
@@ -181,7 +192,8 @@ void main() {
     test('main_shell uses StatefulNavigationShell and goBranch', () async {
       await CoreGenerator(projectName: 'test_app').generate();
       final content = File(p.join(
-        tempDir.path, 'lib/core/widgets/shell/main_shell.dart',
+        tempDir.path,
+        'lib/core/widgets/shell/main_shell.dart',
       )).readAsStringSync();
       expect(content, contains('StatefulNavigationShell'));
       expect(content, contains('goBranch'));
@@ -207,7 +219,9 @@ void main() {
   group('FeatureGenerator — defaults', () {
     test('generates all 10 files', () async {
       await FeatureGenerator(
-        featureName: 'product', className: 'Product', projectName: 'test_app',
+        featureName: 'product',
+        className: 'Product',
+        projectName: 'test_app',
       ).generate();
 
       for (final path in _productFiles) {
@@ -218,7 +232,9 @@ void main() {
 
     test('datasource uses Dio (not Supabase)', () async {
       await FeatureGenerator(
-        featureName: 'product', className: 'Product', projectName: 'test_app',
+        featureName: 'product',
+        className: 'Product',
+        projectName: 'test_app',
       ).generate();
       final content = File(p.join(
         tempDir.path,
@@ -230,7 +246,9 @@ void main() {
 
     test('page has static RouteStructure route', () async {
       await FeatureGenerator(
-        featureName: 'product', className: 'Product', projectName: 'test_app',
+        featureName: 'product',
+        className: 'Product',
+        projectName: 'test_app',
       ).generate();
       final content = File(p.join(
         tempDir.path,
@@ -241,7 +259,9 @@ void main() {
 
     test('repository_impl catches DioException', () async {
       await FeatureGenerator(
-        featureName: 'product', className: 'Product', projectName: 'test_app',
+        featureName: 'product',
+        className: 'Product',
+        projectName: 'test_app',
       ).generate();
       final content = File(p.join(
         tempDir.path,
@@ -254,12 +274,14 @@ void main() {
   group('FeatureGenerator — flags', () {
     test('--no-usecase: skips usecase file', () async {
       await FeatureGenerator(
-        featureName: 'product', className: 'Product',
-        projectName: 'test_app', withUsecase: false,
+        featureName: 'product',
+        className: 'Product',
+        projectName: 'test_app',
+        withUsecase: false,
       ).generate();
       expect(
         File(p.join(tempDir.path,
-            'lib/features/product/domain/usecases/get_product_usecase.dart'))
+                'lib/features/product/domain/usecases/get_product_usecase.dart'))
             .existsSync(),
         isFalse,
       );
@@ -267,12 +289,14 @@ void main() {
 
     test('--no-datasource: skips datasource file', () async {
       await FeatureGenerator(
-        featureName: 'product', className: 'Product',
-        projectName: 'test_app', withDatasource: false,
+        featureName: 'product',
+        className: 'Product',
+        projectName: 'test_app',
+        withDatasource: false,
       ).generate();
       expect(
         File(p.join(tempDir.path,
-            'lib/features/product/data/datasources/product_remote_datasource.dart'))
+                'lib/features/product/data/datasources/product_remote_datasource.dart'))
             .existsSync(),
         isFalse,
       );
@@ -280,8 +304,10 @@ void main() {
 
     test('--with-form: generates form page', () async {
       await FeatureGenerator(
-        featureName: 'product', className: 'Product',
-        projectName: 'test_app', withForm: true,
+        featureName: 'product',
+        className: 'Product',
+        projectName: 'test_app',
+        withForm: true,
       ).generate();
       final f = File(p.join(tempDir.path,
           'lib/features/product/presentation/pages/product_form_page.dart'));

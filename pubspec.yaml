@@ -1,12 +1,12 @@
-name: clean_arch_gen
+name: archi_gen
 description: >
   A CLI tool to generate Flutter Clean Architecture boilerplate.
   Generates core structure, features, and presets with dio, fresh_dio,
   flutter_bloc, go_router, get_it, fpdart, and google_fonts.
 version: 0.5.0
-homepage: https://github.com/fandiidnaf/clean_arch_gen
-repository: https://github.com/fandiidnaf/clean_arch_gen
-issue_tracker: https://github.com/fandiidnaf/clean_arch_gen/issues
+homepage: https://github.com/fandiidnaf/archi_gen
+repository: https://github.com/fandiidnaf/archi_gen
+issue_tracker: https://github.com/fandiidnaf/archi_gen/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -20,7 +20,7 @@ dev_dependencies:
   test: ^1.31.0
 
 executables:
-  clean_arch_gen: clean_arch_gen
+  archi_gen: archi_gen
 
 topics:
   - code-generation

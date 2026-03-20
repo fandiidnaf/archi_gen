@@ -19,15 +19,13 @@ class RemoveCommand {
 
     if (!featureDir.existsSync()) {
       CliLogger.error('Feature "$className" not found at: ${featureDir.path}');
-      CliLogger.hint('Use `dart run clean_arch_gen list` to see existing features.');
+      CliLogger.hint('Use `dart run archi_gen list` to see existing features.');
       return;
     }
 
     // Count files to be deleted for user info
-    final fileCount = featureDir
-        .listSync(recursive: true)
-        .whereType<File>()
-        .length;
+    final fileCount =
+        featureDir.listSync(recursive: true).whereType<File>().length;
 
     CliLogger.section('Remove Feature: $className');
     CliLogger.warn('This will delete: ${featureDir.path}');
@@ -35,7 +33,8 @@ class RemoveCommand {
     print('');
 
     if (!skipConfirm) {
-      stdout.write('  Are you sure? Type the feature name to confirm ($snakeName): ');
+      stdout.write(
+          '  Are you sure? Type the feature name to confirm ($snakeName): ');
       final input = stdin.readLineSync()?.trim() ?? '';
       if (input != snakeName) {
         CliLogger.info('Aborted — input did not match "$snakeName".');

@@ -159,7 +159,7 @@ void _registerCoreServices() {
 }
 
 // ── Feature registrations ──────────────────────────────────────────────────
-// Paste the snippet printed by `dart run clean_arch_gen feature <n>` here.
+// Paste the snippet printed by `dart run archi_gen feature <n>` here.
 //
 // Example:
 // void _registerHome() {

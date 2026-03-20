@@ -55,8 +55,8 @@ class InitCommand {
     CliLogger.hint('Next steps:');
     print(
         '  1. Update AppConstants.baseUrl in lib/core/constants/app_constants.dart');
-    print('  2. dart run clean_arch_gen feature <your_feature>');
-    print('  3. dart run clean_arch_gen preset auth  (optional)');
+    print('  2. dart run archi_gen feature <your_feature>');
+    print('  3. dart run archi_gen preset auth  (optional)');
     print('');
   }
 
