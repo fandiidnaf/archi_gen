@@ -85,7 +85,7 @@ void main() {
     });
 
     test(
-        'service_locator registers DioClient, AuthInterceptor, SharedPreferences',
+        'service_locator registers DioClient, AuthInterceptor, FlutterSecureStorage',
         () async {
       await CoreGenerator(projectName: 'test_app').generate();
       final content =
@@ -93,7 +93,7 @@ void main() {
               .readAsStringSync();
       expect(content, contains('DioClient.create'));
       expect(content, contains('AuthInterceptor'));
-      expect(content, contains('SharedPreferences'));
+      expect(content, contains('FlutterSecureStorage'));
       expect(content, contains('configureDependencies() async'));
     });
 
@@ -130,15 +130,15 @@ void main() {
       expect(content, contains('toFailure'));
     });
 
-    test('token_storage implements TokenStorage<AppToken>', () async {
+    test('token_storage implements TokenStorage<OAuth2Token>', () async {
       await CoreGenerator(projectName: 'test_app').generate();
       final content = File(p.join(
         tempDir.path,
         'lib/core/network/token_storage.dart',
       )).readAsStringSync();
-      expect(content, contains('implements TokenStorage<AppToken>'));
+      expect(content, contains('implements TokenStorage<OAuth2Token>'));
       expect(content, contains('implements Token'));
-      expect(content, contains('SharedPreferences'));
+      expect(content, contains('FlutterSecureStorage'));
     });
 
     test('dio_client uses kDebugMode for logger', () async {
