@@ -1,3 +1,6 @@
+## 0.5.1
+-  update README.md
+
 ## 0.5.0
 
 ### New: `core/network/` folder
