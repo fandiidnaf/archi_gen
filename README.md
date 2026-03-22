@@ -229,44 +229,6 @@ Checks 30+ core files, all required deps, feature integrity, and route registrat
 
 ---
 
-## Upload to GitHub & pub.dev
-
-### GitHub
-
-```bash
-cd your_package_folder
-git init
-git add .
-git commit -m "feat: initial release v0.5.0"
-git remote add origin https://github.com/YOUR_USERNAME/archi_gen.git
-git branch -M main
-git push -u origin main
-git tag v0.5.0 && git push origin v0.5.0
-```
-
-Update `pubspec.yaml`:
-```yaml
-homepage: https://github.com/YOUR_USERNAME/archi_gen
-repository: https://github.com/YOUR_USERNAME/archi_gen
-```
-
-### pub.dev
-
-```bash
-# Dry run — checks everything without publishing
-dart pub publish --dry-run
-
-# Publish
-dart pub publish
-```
-
-Requirements for pub.dev:
-- `pubspec.yaml`: `name`, `description` (60+ chars), `version`, `homepage`
-- `README.md`, `CHANGELOG.md`, `LICENSE` all present
-- No analyzer errors: `dart analyze`
-
----
-
 ## Roadmap
 
 - [ ] `preset user_management`
